@@ -1,0 +1,13 @@
+venv/
+__pycache__/
+*.pyc
+db.sqlite3
+.env
+*.log
+*.sqlite3
+/staticfiles/
+/media/
+/*.py[cod]
+/.DS_Store
+*.sqlite3
+intro-to-django/

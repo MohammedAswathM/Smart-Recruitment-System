@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Details</title>
+</head>
+<body>
+    <h1>{{ job.title }}</h1>
+    <p><strong>Details:</strong> {{ job.details }}</p>
+    <p><strong>Responsibilities:</strong> {{ job.responsibilities }}</p>
+    <p><strong>Experience:</strong> {{ job.experience }}</p>
+
+    <h2>AI-Generated Interview Questions</h2>
+    <ul>
+        {% for question in interview_questions %}
+        <li>{{ question }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,7 @@
+Rank	Total Score	Name
+1	0.34223	fake_REVE_Web.pdf
+2	0.34223	Cynthia_Dwayne_ZMEuRlX.pdf
+3	0.32222	fake_DSI_full_stack_web_v5PWQRo.pdf
+4	0.32222	Full_Stack_Developer_Resume.pdf
+5	0.19163	fake_DSI_full_stack_web_wl0CsMz.pdf
+6	0.18796	fake_DSI_full_stack_web_v6LIhzq.pdf

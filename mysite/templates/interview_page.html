@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Interview Generator | AI Recruitment System</title>
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --accent-color: #60a5fa;
+            --background-color: #f8fafc;
+            --text-color: #1e293b;
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="20" fill="rgba(255,255,255,0.05)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .form-section, .info-section {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-control, .form-select {
+            border: 2px solid #e2e8f0;
+            padding: 0.75rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+        }
+
+        .btn-generate {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .question-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .question-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .stats-card {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+        }
+
+        .stats-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-spinner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-robot me-2"></i>Smart Recruit
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Header Section -->
+        <div class="page-header text-center">
+            <h1 class="display-4 fw-bold mb-3">AI Interview Generator</h1>
+            <p class="lead mb-0">Generate intelligent, context-aware interview questions powered by AI</p>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="content-grid">
+            <!-- Form Section -->
+            <div class="form-section">
+                <form id="interviewForm" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">
+                            <i class="fas fa-briefcase me-2"></i>Job Description
+                        </label>
+                        <textarea 
+                            class="form-control" 
+                            id="job_description" 
+                            name="job_description" 
+                            rows="4" 
+                            required 
+                            placeholder="Enter detailed job description here..."
+                        ></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">
+                            <i class="fas fa-file-alt me-2"></i>Select Candidate
+                        </label>
+                        <select class="form-select" id="resume_name" name="resume_name" onchange="fillResumeScore()" required>
+                            <option value="" disabled selected>Choose a candidate</option>
+                            {% for resume in ranked_resumes %}
+                            <option value="{{ resume.name }}">
+                                {{ resume.name }} (Match Score: {{ resume.score }})
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">
+                            <i class="fas fa-star me-2"></i>Candidate Match Score
+                        </label>
+                        <input type="text" class="form-control" id="resume_score" name="resume_score" readonly required>
+                    </div>
+
+                    <button type="submit" class="btn btn-generate">
+                        <i class="fas fa-magic me-2"></i>Generate Interview Questions
+                    </button>
+                </form>
+            </div>
+
+            <!-- Info Section -->
+            <div class="info-section">
+                <div class="stats-card mb-4">
+                    <h5 class="mb-3"><i class="fas fa-chart-line me-2"></i>Quick Stats</h5>
+                    <div class="stats-number" id="candidateCount">{{ ranked_resumes|length }}</div>
+                    <div class="text-muted">Candidates Available</div>
+                </div>
+
+                <div class="tips-section">
+                    <h5 class="mb-3"><i class="fas fa-lightbulb me-2"></i>Pro Tips</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Be specific in job description</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Review candidate score</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Customize questions as needed</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Questions Container -->
+        <div id="questionsContainer" class="mt-4" style="display: none;">
+            <h3 class="mb-4"><i class="fas fa-question-circle me-2"></i>Generated Questions</h3>
+            <div id="questionsList"></div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner mb-3"></div>
+            <p class="mb-0">Generating intelligent questions...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function fillResumeScore() {
+            const selectedResume = $("#resume_name").val();
+            const resumeScores = {
+                {% for resume in ranked_resumes %}
+                "{{ resume.name }}": "{{ resume.score }}",
+                {% endfor %}
+            };
+            $("#resume_score").val(resumeScores[selectedResume] || "");
+        }
+
+        $("#interviewForm").on("submit", function(event) {
+            event.preventDefault();
+            const formData = {
+                job_description: $("#job_description").val(),
+                resume_name: $("#resume_name").val(),
+                resume_score: $("#resume_score").val(),
+                csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val()
+            };
+
+            $(".loading-overlay").css("display", "flex");
+            $("#questionsContainer").hide();
+
+            $.post("", formData)
+                .done(function(response) {
+                    const questions = response.questions || [];
+                    const questionsList = $("#questionsList");
+                    questionsList.empty();
+
+                    if (questions.length > 0) {
+                        questions.forEach((question, index) => {
+                            questionsList.append(`
+                                <div class="question-card">
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge bg-primary me-3">Q${index + 1}</span>
+                                        <span>${question}</span>
+                                    </div>
+                                </div>
+                            `);
+                        });
+                    } else {
+                        questionsList.append(`
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>No questions generated. Please try with different parameters.
+                            </div>
+                        `);
+                    }
+                })
+                .fail(function() {
+                    alert("An error occurred while generating questions. Please try again.");
+                })
+                .always(function() {
+                    $(".loading-overlay").hide();
+                    $("#questionsContainer").fadeIn();
+                });
+        });
+    </script>
+</body>
+</html>
