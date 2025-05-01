@@ -52,7 +52,7 @@ It is recommended to use virtual environment packages such as virtualenv. Follow
 - **Ranking:** The system ranks the resumes based on the document similarity scores.
 
 # Ranking Model
-![](https://github.com/parvez86/Smart-Recruitment-System/blob/main/ProjectPic/2_Recruitment_System_Model_%20Architecture.png)
+
 - **Data Preprocessing:** Data cleaning, word stemming, and verb lemmatization etc.
 - **Basic Requirements:** Check different requirements like CGPA, gender and working experience etc.
 - **Requirement Extraction:** 
@@ -78,10 +78,4 @@ It is recommended to use virtual environment packages such as virtualenv. Follow
 |:-------------------:|:-----------------------:|:------------:|
 |![apply_job]|![ranking]|![signup_page]|
 
-
-[home_page]: https://github.com/parvez86/Smart-Recruitment-System/blob/main/ProjectPic/3_1_homepage.png
-[job_list]: https://github.com/parvez86/Smart-Recruitment-System/blob/main/ProjectPic/5_joblisting_page.png
-[single_job]: https://github.com/parvez86/Smart-Recruitment-System/blob/main/ProjectPic/8_single_job_details.png
-[apply_job]: https://github.com/parvez86/Smart-Recruitment-System/blob/main/ProjectPic/9_apply_job_page.png
-[ranking]: https://github.com/parvez86/Smart-Recruitment-System/blob/main/ProjectPic/10_rank_page.png
-[signup_page]:  https://github.com/parvez86/Smart-Recruitment-System/blob/main/ProjectPic/11_signup_page.png -->
+ -->
