@@ -67,6 +67,14 @@ It is recommended to use virtual environment packages such as virtualenv. Follow
 - **Generate Document Similarity Score:** Using the KNN (K-Nearest Neighbour) model and the TF-IDF weight of the resumes, the system generates a document similarity score (KNN-score) of each resumes according to the job description.
 - **Ranking:** Based on the KNN-scores, the system ranks the resumes and shortlists them.
 
+## API Key Setup
+
+This project uses Google API services that require authentication. Follow these steps to set up your API key:
+
+1. Copy the example API key file:
+   ```bash
+   cp google\ api\ key/my_api_key.json.example google\ api\ key/my_api_key.json
+
 <!-- # Project Features
 
 | Home Page   | Job List| Single Job Details  |

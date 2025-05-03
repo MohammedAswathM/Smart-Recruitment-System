@@ -1,3 +1,4 @@
+# Current entries:
 venv/
 __pycache__/
 *.pyc
@@ -11,3 +12,19 @@ db.sqlite3
 /.DS_Store
 *.sqlite3
 intro-to-django/
+
+# Additional entries for API security:
+# API keys and secrets
+# Ignore real API keys but allow examples
+google\ api\ key/my_api_key.json
+**/my_api_key.json
+!**/my_api_key.json.example
+*.pem
+*.key
+*_key.*
+
+# Additional environment files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
